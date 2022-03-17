@@ -13,16 +13,19 @@ public class PlayerBullet : MonoBehaviour
 		rigidbody2D = GetComponent<Rigidbody2D>();
 	}
 	void FixedUpdate()
-    {
-		if (transform.position.y >= 5.15f || transform.position.y <= -5.15f)
-		{
-			Destroy(gameObject);
-		}
-		if (transform.position.x >= 4.26f || transform.position.y <= -9.04f)
-		{
-			Destroy(gameObject);
-		}
-	
+	{
 		rigidbody2D.velocity = startAngle * power * Time.fixedDeltaTime;
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.layer == 3 || collision.tag == "Player") return;
+		
+		Destroy(gameObject);
+	}
+
+	private void OnBecameInvisible()
+	{
+		Destroy(gameObject);
 	}
 }

@@ -8,7 +8,9 @@ public class WhiteBloodCell : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.tag != "Bullet") return;
+		bool isOn = false;
+		if (collision.tag == "Bullet" || collision.tag == "Player") isOn = true;
+		if (!isOn) return;
 
 		GameObject game = Instantiate(itemPrefab);
 		game.transform.position = transform.position;

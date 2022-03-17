@@ -7,7 +7,7 @@ public class MakeEnemy : MonoBehaviour
 	public GameObject[] enemyList = new GameObject[5];
 	public string[] nameList = new string[5];
 	public int[] damageList = new int[5];
-	public int[] speedList = new int[5];
+	public float[] speedList = new float[5];
 	public int[] hpList = new int[5];
 
 	public float spawnTime, countTime, countBossTime;

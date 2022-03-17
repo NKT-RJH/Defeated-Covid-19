@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Bacteria : MonoBehaviour
 {
-	public int speed;
+	public float speed;
 	Transform playerTransform;
 	Vector3 goal;
     
     void Start()
     {
-		speed = FindObjectOfType<MakeEnemy>().speedList[0];
+		speed = FindObjectOfType<MakeEnemy>().speedList[GetComponent<Enemy>().enemyNumber - 1];
 		playerTransform = FindObjectOfType<Player>().gameObject.transform;
 		goal = (playerTransform.position - transform.position) / 10;
     }

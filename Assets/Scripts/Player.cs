@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 		isCantBreak = false;
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision)
+	private void OnTriggerStay2D(Collider2D collision)
 	{
 		//적일 떄만 효과 발생하기
 		if (onCantBreak) return;
