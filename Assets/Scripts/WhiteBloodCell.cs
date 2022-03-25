@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class WhiteBloodCell : MonoBehaviour
 {
-	[SerializeField] GameObject itemPrefab;
+	public GameObject item;
+	public float speed;
+
+	private void Update()
+	{
+		transform.Translate(Vector3.down * speed * Time.deltaTime);
+	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
@@ -12,7 +18,7 @@ public class WhiteBloodCell : MonoBehaviour
 		if (collision.tag == "Bullet" || collision.tag == "Player") isOn = true;
 		if (!isOn) return;
 
-		GameObject game = Instantiate(itemPrefab);
+		GameObject game = Instantiate(item);
 		game.transform.position = transform.position;
 		Destroy(gameObject);
 	}

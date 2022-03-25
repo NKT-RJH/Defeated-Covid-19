@@ -5,12 +5,7 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-	[HideInInspector] public int score;
-
-	private void Awake()
-	{
-		score = 0;
-	}
+	public static int score;
 
 	// Update is called once per frame
 	void Update()

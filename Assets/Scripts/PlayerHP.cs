@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerHP : MonoBehaviour
 {
 	[Range(0, 100)]
 	public int HP;
-
 	private int maxHP;
 	public bool heal;
 
@@ -32,10 +28,9 @@ public class PlayerHP : MonoBehaviour
 			}
 			heal = false;
 		}
-		if (HP == 0)
+		if (HP <= 0)
 		{
-			//비행기 터지는 효과 발생 1초 동안
-			SceneManager.LoadScene("End");
+			FindObjectOfType<Stage>().Goto_End();
 		}
 	}
 }

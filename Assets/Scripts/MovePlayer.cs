@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovePlayer : MonoBehaviour
 {
-	[SerializeField] private float speed;
+	public float speed;
 	
     void Update()
     {
@@ -27,7 +27,6 @@ public class MovePlayer : MonoBehaviour
 			{
 				position.x = -8.459f;
 			}
-			//position.x = position.x / Mathf.Abs(position.x) * 7.99f;
 		}
 
 		if (position.y < 4.54 && position.y > -4.54)
@@ -36,15 +35,7 @@ public class MovePlayer : MonoBehaviour
 		}
 		else
 		{
-			if(position.y > 0)
-			{
-				position.y = 4.539f;
-			}
-			else
-			{
-				position.y = -4.539f;
-			}
-			//position.y = position.y / Mathf.Abs(position.y) * 4.539f;
+			position.y = position.y / Mathf.Abs(position.y) * 4.539f;
 		}
 		transform.position = position;
 	}

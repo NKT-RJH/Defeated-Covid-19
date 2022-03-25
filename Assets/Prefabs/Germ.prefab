@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b468a10a8d797143be351c0856418b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  germBullet: {fileID: 356919509184516132, guid: 74bac983b4e1ae442aed9d3115918c11, type: 3}
+  enemyBullet: {fileID: 356919509184516132, guid: 74bac983b4e1ae442aed9d3115918c11, type: 3}
   speed: 0
   countTime: 0
 --- !u!114 &1164442279189702972
@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyNumber: 2
+  score: 300
 --- !u!58 &1164442279189702974
 CircleCollider2D:
   m_ObjectHideFlags: 0

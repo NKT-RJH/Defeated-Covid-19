@@ -1,16 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
 	PlayerHP playerHP;
-
 	public bool isCantBreak, onCantBreak;
-
 	string[] enemyList;
-	int[] damageList;
 
 	private void Awake()
 	{
@@ -22,7 +18,6 @@ public class Player : MonoBehaviour
 	void Start()
     {
 		enemyList = FindObjectOfType<MakeEnemy>().nameList;
-		damageList = FindObjectOfType<MakeEnemy>().damageList;
     }
 
 	private void Update()
@@ -46,9 +41,13 @@ public class Player : MonoBehaviour
 			{
 				if (collision.tag != enemyList[i]+j) continue;
 
-				playerHP.HP -= damageList[i] / j;
+				if (j == 1)
+				{
+					Destroy(collision.gameObject);
+				}
+				playerHP.HP -= MakeEnemy.damageList[i] / j;
 				StartCoroutine(On_Cant_Break(true));
-				i = enemyList.Length; //ÁßÃ¸for¹® break
+				i = enemyList.Length;
 				break;
 			}
 		}

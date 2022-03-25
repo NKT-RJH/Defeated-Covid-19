@@ -1,30 +1,42 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Stage : MonoBehaviour
 {
-	//[HideInInspector] public int stage = 1;
-	 public int stage;
+	public GameObject blackWall;
+	public static int stage;
 
-	private void Awake()
+	private void Update()
 	{
-		stage = 1;
+		GetComponent<Text>().text = "Stage " + (stage + 1);
 	}
 
-	private void Start()
+	public void End_Stage()
 	{
-		GetComponent<Text>().text = "Stage " + stage;
-	}
+		Time.timeScale = 0;
 
-	private void Next_Stage()
-	{
-		MakeEnemy makeEnemy = FindObjectOfType<MakeEnemy>();
-		for (int i = 0; i < makeEnemy.damageList.Length; i++)
+		if (stage >= 1)
 		{
-			makeEnemy.damageList[i] = makeEnemy.damageList[i] / 2;
-			makeEnemy.hpList[i] *= 2;
+			Goto_End();
 		}
+		else
+		{
+			blackWall.SetActive(true); //치트키 만들고 시작화면이랑 끝화면 만들기!!!
+		}
+	}
+
+	public void Next_Stage()
+	{
+		stage++;
+		Time.timeScale = 1;
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	}
+
+	public void Goto_End()
+	{
+		Time.timeScale = 1;
+		SceneManager.LoadScene("End");
 	}
 }

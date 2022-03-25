@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHurt : MonoBehaviour
@@ -12,7 +9,14 @@ public class PlayerHurt : MonoBehaviour
 
     void Awake()
     {
-		hurt = 10;
+		if (Stage.stage == 0)
+		{
+			hurt = 10;
+		}
+		if(Stage.stage == 1)
+		{
+			hurt = 30;
+		}
 		maxHurt = 100;
 		downHurt = false;
     }
@@ -30,9 +34,9 @@ public class PlayerHurt : MonoBehaviour
 			}
 			downHurt = false;
 		}
-		if (hurt == maxHurt)
+		if (hurt >= maxHurt)
 		{
-			SceneManager.LoadScene("End");
+			FindObjectOfType<Stage>().Goto_End();
 		}
 	}
 }

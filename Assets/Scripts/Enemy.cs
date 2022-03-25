@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-	MakeEnemy makeEnemy;
+	public GameObject bossHPBar;
+	GameObject BarPrefab;
 	[Range(1, 5)]
 	public int enemyNumber;
-	int hp;
-	bool hit;
+	public int hp;
+	public int maxhp;
+	public bool hit;
+	public int score;
 
 	private void Start()
 	{
 		hit = false;
-		makeEnemy = FindObjectOfType<MakeEnemy>();
-		hp = makeEnemy.hpList[enemyNumber - 1];
+		if (tag == "Boss2")
+		{
+			BarPrefab = Instantiate(bossHPBar, GameObject.Find("Canvas").transform);
+		}
+		hp = MakeEnemy.hpList[enemyNumber - 1];
+		maxhp = hp;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.tag != "Bullet") return;
+
+		Destroy(collision.gameObject);
 
 		StopCoroutine(Hit_Motion());
 		StartCoroutine(Hit_Motion());
@@ -31,10 +40,27 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
+	public void If_Boss()
+	{
+		if (tag == "Boss2")
+		{
+			Destroy(BarPrefab);
+			FindObjectOfType<Stage>().End_Stage();
+		}
+	}
+
 	private void OnBecameInvisible()
 	{
-		if (hit) return;
-		FindObjectOfType<PlayerHurt>().hurt += makeEnemy.damageList[enemyNumber - 1] / 2;
+		if (hit)
+		{
+			Score.score += score;
+			If_Boss();
+			return;
+		}
+		if (FindObjectOfType<PlayerHurt>())
+		{
+			FindObjectOfType<PlayerHurt>().hurt += MakeEnemy.damageList[enemyNumber - 1] / 2;
+		}
 		Destroy(gameObject);
 	}
 

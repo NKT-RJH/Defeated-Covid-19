@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bacteria : MonoBehaviour
@@ -10,9 +8,9 @@ public class Bacteria : MonoBehaviour
     
     void Start()
     {
-		speed = FindObjectOfType<MakeEnemy>().speedList[GetComponent<Enemy>().enemyNumber - 1];
+		speed = MakeEnemy.speedList[GetComponent<Enemy>().enemyNumber - 1];
 		playerTransform = FindObjectOfType<Player>().gameObject.transform;
-		goal = (playerTransform.position - transform.position) / 10;
+		goal = (playerTransform.position - transform.position).normalized;
     }
 
     void Update()
