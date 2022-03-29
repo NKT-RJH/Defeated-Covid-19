@@ -11,32 +11,18 @@ public class MovePlayer : MonoBehaviour
 		float horizontal = Input.GetAxis("Horizontal");
 		float vertical = Input.GetAxis("Vertical");
 
-		Vector3 position = transform.position;
+		//Vector3 position = transform.position;
 
-		if (position.x < 3.68 && position.x > -8.46)
-		{
-			position.x += horizontal * Time.deltaTime * speed;
-		}
-		else
-		{
-			if (position.x > 0)
-			{
-				position.x = 3.679f;
-			}
-			else
-			{
-				position.x = -8.459f;
-			}
-		}
+		transform.position += new Vector3(horizontal * Time.deltaTime * speed, vertical * Time.deltaTime * speed);
+		//position.x += horizontal * Time.deltaTime * speed;
+		//position.y += vertical * Time.deltaTime * speed;
 
-		if (position.y < 4.54 && position.y > -4.54)
-		{
-			position.y += vertical * Time.deltaTime * speed;
-		}
-		else
-		{
-			position.y = position.y / Mathf.Abs(position.y) * 4.539f;
-		}
-		transform.position = position;
+		Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+		if (pos.x > 1) pos.x = 1;
+		if (pos.x < 0) pos.x = 0;
+		if (pos.y > 1) pos.y = 1;
+		if (pos.y < 0) pos.y = 0;
+
+		transform.position = Camera.main.ViewportToWorldPoint(pos);
 	}
 }

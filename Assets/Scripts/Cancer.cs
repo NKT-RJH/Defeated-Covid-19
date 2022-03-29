@@ -26,8 +26,8 @@ public class Cancer : MonoBehaviour
 		for (int i = 0; i < shotAngle.Length; i++)
 		{
 			GameObject game = Instantiate(enemyBullet, transform.position, Quaternion.identity);
-			game.GetComponent<EnemyBullet>().power = 150;
-			game.GetComponent<EnemyBullet>().startAngle = new Vector3(FindObjectOfType<Player>().transform.position.x - transform.position.x + shotAngle[i] / 10f, FindObjectOfType<Player>().transform.position.y - transform.position.y - Mathf.Abs(shotAngle[i] / 10f)).normalized;
+			game.GetComponent<Bullet>().power = 150;
+			game.GetComponent<Bullet>().startAngle = new Vector3(FindObjectOfType<Player>().transform.position.x - transform.position.x + shotAngle[i] / 10f, FindObjectOfType<Player>().transform.position.y - transform.position.y - Mathf.Abs(shotAngle[i] / 10f)).normalized;
 			game.tag = "Cancer1";
 		}
 	}

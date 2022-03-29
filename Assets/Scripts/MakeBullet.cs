@@ -33,14 +33,14 @@ public class MakeBullet : MonoBehaviour
 				case 0:
 					startPath[0].x = transform.position.x;
 					startPath[0].z = 0f;
-					addSpeed = 400;
+					addSpeed = 500;
 					break;
 				case 1:
 					startPath[0].x = transform.position.x - 0.2f;
 					startPath[1].x = transform.position.x + 0.2f;
 					startPath[0].z = 0f;
 					startPath[1].z = 0f;
-					addSpeed = 450;
+					addSpeed = 550;
 					break;
 				case 2:
 					startPath[0].x = transform.position.x;
@@ -49,7 +49,7 @@ public class MakeBullet : MonoBehaviour
 					startPath[0].z = 0f;
 					startPath[1].z = -5f;
 					startPath[2].z = 5f;
-					addSpeed = 500;
+					addSpeed = 600;
 					break;
 				case 3:
 					startPath[0].x = transform.position.x - 0.1f;
@@ -60,7 +60,7 @@ public class MakeBullet : MonoBehaviour
 					startPath[1].z = 0f;
 					startPath[2].z = -10f;
 					startPath[3].z = 10f;
-					addSpeed = 550;
+					addSpeed = 650;
 					break;
 				case 4:
 					startPath[0].x = transform.position.x;
@@ -73,14 +73,14 @@ public class MakeBullet : MonoBehaviour
 					startPath[2].z = 7.5f;
 					startPath[3].z = -15f;
 					startPath[4].z = 15f;
-					addSpeed = 600;
+					addSpeed = 700;
 					break;
 			}
 			for (int i = 0; i <= WeaponLevel.bulletLevel; i++)
 			{
 				GameObject game2 = Instantiate(bullet, new Vector2(startPath[i].x, transform.position.y + 0.5f), Quaternion.identity);
-				game2.GetComponent<PlayerBullet>().startAngle = new Vector2(startPath[i].z / 100, 1);
-				game2.GetComponent<PlayerBullet>().power = addSpeed;
+				game2.GetComponent<Bullet>().startAngle = new Vector2(startPath[i].z / 100, 1);
+				game2.GetComponent<Bullet>().power = addSpeed;
 			}
 		}
 	}

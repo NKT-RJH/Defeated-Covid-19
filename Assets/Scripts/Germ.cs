@@ -23,8 +23,8 @@ public class Germ : MonoBehaviour
 
 		countTime = 0;
 		GameObject game = Instantiate(enemyBullet, transform.position, Quaternion.identity);
-		game.GetComponent<EnemyBullet>().power = 200;
-		game.GetComponent<EnemyBullet>().startAngle = (FindObjectOfType<Player>().transform.position - transform.position).normalized;
+		game.GetComponent<Bullet>().power = 200;
+		game.GetComponent<Bullet>().startAngle = (FindObjectOfType<Player>().transform.position - transform.position).normalized;
 		game.tag = "Germ1";
 	}
 }

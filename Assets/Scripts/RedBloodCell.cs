@@ -19,6 +19,5 @@ public class RedBloodCell : MonoBehaviour
 
 		FindObjectOfType<PlayerHurt>().hurt += 8;
 		Destroy(gameObject);
-		//이제 보스 만들기!
 	}
 }
